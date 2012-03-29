@@ -21,19 +21,13 @@ client.on "error", (err) ->
 
 app.get '/', (req, res) ->
 	# client.del('yabai', redis.print)
-	client.get('yabai', (err, value) ->
-		if yabai == null
-			client.set('yabai', '1')
-			yabai = 1
-		else
-			client.incr('yabai', (err, reply) ->
-				console.log reply
-				yabai = reply
-				data =
-					title: 'YABAI'
-					yabai: yabai
-				res.render 'index.html.eco', data: data
-			)
+	client.incr('yabai', (err, reply) ->
+		console.log reply
+		yabai = reply
+		data =
+			title: 'YABAI'
+			yabai: yabai
+		res.render 'index.html.eco', data: data
 	)
 
 
