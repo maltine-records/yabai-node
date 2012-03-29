@@ -2,6 +2,8 @@
 # author: takano32 <tak@no32 dot tk>
 #
 
+cluster = require 'cluster'
+os = require 'os'
 express = require 'express'
 coffee = require 'coffee-script'
 
@@ -34,11 +36,10 @@ app.get '/', (req, res) ->
 	)
 
 
-
-
-app.listen process.env.PORT || 3000
-
-
-
+if cluster.isMaster
+	for i in [0...os.cpus().length]
+		worker = cluster.fork()
+else
+	app.listen(process.env.PORT || 3000)
 
 

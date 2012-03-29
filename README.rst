@@ -23,3 +23,5 @@ install w/ npm
 - eco
 
 - redis
+
+- cluster
