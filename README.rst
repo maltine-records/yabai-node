@@ -7,6 +7,8 @@ Base Components
 
 - http://nodejs.org/
 
+  - http://npmjs.org/
+
 - http://coffeescript.org/
 
 - http://redis.io/
