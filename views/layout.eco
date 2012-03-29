@@ -1,0 +1,10 @@
+<!DOCTYPE html>
+  <html>
+    <head>
+      <title>YABAI</title>
+      <script src="/javascripts/jquery.js"></script>
+      <body>
+        <h1>YABAI</h1>
+        <%- @body %>
+      </body>
+  </html>

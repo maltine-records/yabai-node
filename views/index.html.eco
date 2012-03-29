@@ -1,0 +1,7 @@
+<html>
+  <title><%= @data.title %></title>
+  <body>
+YABAI: <%= @data.yabai %>
+  </body>
+</html>
+
