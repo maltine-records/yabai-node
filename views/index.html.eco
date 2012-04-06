@@ -1,7 +1,9 @@
 <html>
-  <title><%= @data.title %></title>
-  <body>
-YABAI: <%= @data.yabai %>
-  </body>
+<title><%= @data.title %></title>
+<body>
+<button onClick='yabai();' type='button' name='yabai' value='yabai'>YA☆BA☆I</button>
+<br />
+<div id='display'><%= @data.yabai %></div>
+</body>
 </html>
 

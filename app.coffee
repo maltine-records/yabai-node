@@ -21,20 +21,33 @@ client.on "error", (err) ->
 
 app.get '/', (req, res) ->
 	# client.del('yabai', redis.print)
-	client.incr('yabai', (err, reply) ->
-		console.log reply
+	client.get 'yabai', (err, reply) ->
 		yabai = reply
 		data =
 			title: 'YABAI'
 			yabai: yabai
 		res.render 'index.html.eco', data: data
-	)
 
-
+###
 if cluster.isMaster
 	for i in [0...os.cpus().length]
 		worker = cluster.fork()
 else
 	app.listen(process.env.PORT || 3000)
+###
 
+io = require('socket.io').listen app
+
+io.sockets.on 'connection', (socket) ->
+	console.log 'connection'
+	socket.on 'yabai', (data) ->
+		console.log 'yabai'
+		client.incr 'yabai', (err, reply) ->
+			console.log reply
+			value = reply
+			data =
+				yabai: value
+			socket.emit 'yabai', data: data
+
+app.listen(process.env.PORT || 3000)
 
