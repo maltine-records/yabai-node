@@ -28,6 +28,11 @@ app.get '/', (req, res) ->
 			yabai: yabai
 		res.render 'index.html.eco', data: data
 
+app.get '/cebui', (req, res) ->
+	data =
+		title: 'CEBUI'
+	res.render 'admin.html.eco', data: data
+
 if cluster.isMaster
 	for i in [0...os.cpus().length]
 		worker = cluster.fork()
@@ -38,6 +43,7 @@ io = require('socket.io').listen app
 
 io.sockets.on 'connection', (socket) ->
 	console.log 'connection'
+
 	socket.on 'yabai', (data) ->
 		console.log 'yabai'
 		client.incr 'yabai', (err, reply) ->
@@ -46,6 +52,9 @@ io.sockets.on 'connection', (socket) ->
 			data =
 				yabai: value
 			socket.emit 'yabai', data: data
+
+	socket.on 'oquno', (data) ->
+		socket.broadcast.emit 'oquno'
 
 app.listen(process.env.PORT || 3000)
 

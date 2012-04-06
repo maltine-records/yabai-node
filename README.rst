@@ -20,8 +20,11 @@ install w/ npm
 
 - express
 
+- socket.io
+
 - eco
 
 - redis
 
 - cluster
+

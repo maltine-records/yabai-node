@@ -1,14 +1,14 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<title>YABAI</title>
+		<title><%= @data.title %></title>
 		<meta charset="UTF-8">
 		<script src="/javascripts/jquery.js"></script>
 		<script src="/socket.io/socket.io.js"></script>
 		<script src="/javascripts/yabai.js"></script>
 	</head>
 	<body>
-		<h1>YABAI</h1>
+		<h1><%= @data.title %></h1>
 		<%- @body %>
 	</body>
 </html>

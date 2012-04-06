@@ -1,0 +1,9 @@
+<html>
+<title><%= @data.title %></title>
+<body>
+<button onClick='oquno();' type='button' name='oquno' value='oquno'>o☆qu☆no</button>
+<br />
+<div id='display'></div>
+</body>
+</html>
+
