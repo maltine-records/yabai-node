@@ -28,13 +28,11 @@ app.get '/', (req, res) ->
 			yabai: yabai
 		res.render 'index.html.eco', data: data
 
-###
 if cluster.isMaster
 	for i in [0...os.cpus().length]
 		worker = cluster.fork()
 else
-	app.listen(process.env.PORT || 3000)
-###
+	app.listen process.env.PORT || 3000
 
 io = require('socket.io').listen app
 
