@@ -34,7 +34,7 @@ app.get '/cebui', (req, res) ->
 	res.render 'admin.html.eco', data: data
 
 if cluster.isMaster
-	for i in [1..os.cpus().length]
+	for i in [1...os.cpus().length]
 		worker = cluster.fork()
 else
 	app.listen process.env.PORT || 3000
