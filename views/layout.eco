@@ -8,7 +8,6 @@
 		<script src="/javascripts/yabai.js"></script>
 	</head>
 	<body>
-		<h1><%= @data.title %></h1>
 		<%- @body %>
 	</body>
 </html>

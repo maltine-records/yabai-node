@@ -1,9 +1,10 @@
-<html>
-<title><%= @data.title %></title>
-<body>
+<h1><%= @data.title %></h1>
 <button onClick='oquno();' type='button' name='oquno' value='oquno'>o☆qu☆no</button>
+<button onClick='youpy();' type='button' name='youpy' value='youpy'>yo☆u☆py</button>
+<button onClick='pikachu();' type='button' name='pikachu' value='pikachu'>pi☆ka☆chu</button>
+<br />
+<input id='#announce' type='text' />
+<button onClick='announce();' type='button' name='announce' value='announce'>アナウンス</button>
 <br />
 <div id='display'></div>
-</body>
-</html>
 
