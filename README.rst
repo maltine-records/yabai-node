@@ -9,7 +9,7 @@ Base Components
 
   - http://npmjs.org/
 
-- http://coffeescript.org/
+    - http://coffeescript.org/
 
 - http://redis.io/
 
@@ -17,6 +17,8 @@ Node Modules
 ============
 
 install w/ npm
+
+- coffee-script
 
 - express
 
