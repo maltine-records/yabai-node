@@ -17,9 +17,17 @@ socket.on 'oquno', (msg) ->
 		src: 'http://oq.la/i'
 	$('#display').prepend($('<img>').attr(attr))
 
+socket.on 'announce', (msg) ->
+	$('#announce').text(msg.announce)
+
 @yabai = () ->
 	socket.emit 'yabai', [1]
 
 @oquno = ()->
 	socket.emit 'oquno', [1]
+
+@announce = ()->
+	data =
+		announce: $('#announce').val()
+	socket.emit 'announce', data
 

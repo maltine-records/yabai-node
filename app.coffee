@@ -56,5 +56,8 @@ io.sockets.on 'connection', (socket) ->
 	socket.on 'oquno', (data) ->
 		socket.broadcast.emit 'oquno'
 
+	socket.on 'announce', (data) ->
+		socket.broadcast.emit 'announce', data
+
 app.listen(process.env.PORT || 3000)
 

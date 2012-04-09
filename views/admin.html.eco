@@ -3,7 +3,7 @@
 <button onClick='youpy();' type='button' name='youpy' value='youpy'>yo☆u☆py</button>
 <button onClick='pikachu();' type='button' name='pikachu' value='pikachu'>pi☆ka☆chu</button>
 <br />
-<input id='#announce' type='text' />
+<input id='announce' type='text' />
 <button onClick='announce();' type='button' name='announce' value='announce'>アナウンス</button>
 <br />
 <div id='display'></div>
