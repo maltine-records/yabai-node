@@ -32,7 +32,7 @@ socket.on 'announce', (msg) ->
 @oquno = ()->
 	socket.emit 'oquno', [1]
 
-@oquno = ()->
+@youpy = ()->
 	socket.emit 'youpy', [1]
 
 @announce = ()->
