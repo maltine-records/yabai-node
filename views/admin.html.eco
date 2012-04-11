@@ -6,5 +6,5 @@
 <input id='announce' type='text' />
 <button onClick='announce();' type='button' name='announce' value='announce'>アナウンス</button>
 <br />
-<div id='display'></div>
+<div id='display'><%= @data.yabai %></div>
 

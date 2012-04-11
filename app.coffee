@@ -22,16 +22,17 @@ client.on "error", (err) ->
 app.get '/', (req, res) ->
 	# client.del('yabai', redis.print)
 	client.get 'yabai', (err, reply) ->
-		yabai = reply
 		data =
 			title: 'YABAI'
-			yabai: yabai
+			yabai: reply
 		res.render 'index.html.eco', data: data
 
 app.get '/cebui', (req, res) ->
-	data =
-		title: 'CEBUI'
-	res.render 'admin.html.eco', data: data
+	client.get 'yabai', (err, reply) ->
+		data =
+			title: 'CEBUI'
+			yabai: reply
+		res.render 'admin.html.eco', data: data
 
 if cluster.isMaster
 	for i in [1...os.cpus().length]
@@ -45,13 +46,13 @@ io.sockets.on 'connection', (socket) ->
 	console.log 'connection'
 
 	socket.on 'yabai', (data) ->
-		console.log 'yabai'
 		client.incr 'yabai', (err, reply) ->
 			console.log reply
 			value = reply
 			data =
 				yabai: value
 			socket.emit 'yabai', data: data
+			socket.broadcast.emit 'yabai', data: data
 
 	socket.on 'oquno', (data) ->
 		socket.broadcast.emit 'oquno'
