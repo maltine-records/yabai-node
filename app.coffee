@@ -55,6 +55,9 @@ io.sockets.on 'connection', (socket) ->
 	socket.on 'oquno', (data) ->
 		socket.broadcast.emit 'oquno'
 
+	socket.on 'youpy', (data) ->
+		socket.broadcast.emit 'youpy'
+
 	socket.on 'announce', (data) ->
 		socket.broadcast.emit 'announce', data
 
