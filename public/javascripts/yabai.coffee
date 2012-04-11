@@ -17,6 +17,12 @@ socket.on 'oquno', (msg) ->
 		src: 'http://oq.la/i'
 	$('#display').prepend($('<img>').attr(attr))
 
+socket.on 'youpy', (msg) ->
+	attr =
+		rel: 'stylesheet'
+		href: 'http://oq.la/y2'
+	$('head').append($('<link>').attr(attr))
+
 socket.on 'announce', (msg) ->
 	$('#announce').text(msg.announce)
 
@@ -25,6 +31,9 @@ socket.on 'announce', (msg) ->
 
 @oquno = ()->
 	socket.emit 'oquno', [1]
+
+@oquno = ()->
+	socket.emit 'youpy', [1]
 
 @announce = ()->
 	data =
