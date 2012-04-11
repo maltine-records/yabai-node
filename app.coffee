@@ -47,10 +47,8 @@ io.sockets.on 'connection', (socket) ->
 
 	socket.on 'yabai', (data) ->
 		client.incr 'yabai', (err, reply) ->
-			console.log reply
-			value = reply
 			data =
-				yabai: value
+				yabai: reply
 			socket.emit 'yabai', data: data
 			socket.broadcast.emit 'yabai', data: data
 
