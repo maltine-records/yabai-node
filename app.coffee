@@ -52,6 +52,49 @@ io.sockets.on 'connection', (socket) ->
 			socket.emit 'yabai', data: data
 			socket.broadcast.emit 'yabai', data: data
 
+		dnow  = new Date()
+		dh    = new Date(dnow.getFullYear(), dnow.getMonth(), dnow.getDate(), dnow.getHours(), 0, 0, 0)
+		dm    = new Date(dnow.getFullYear(), dnow.getMonth(), dnow.getDate(), dnow.getHours(), dnow.getMinutes(), 0, 0)
+		keynameHour = "Yb:H:" + Math.ceil(dh.getTime()/1000)
+		keynameMin  = "Yb:M:" + Math.ceil(dm.getTime()/1000)
+		keynameSec  = "Yb:S:" + Math.ceil(dnow.getTime()/1000)
+
+		client.incr keynameHour
+		client.incr keynameMin
+		client.incr keynameSec
+		# depends redis 2.2 or lator
+		client.expire keynameHour, 60*60*24*3
+		client.expire keynameMin,  60*60*3
+		client.expire keynameSec,  60*3
+
+		client.keys 'Yb:S:*', (err, replies) ->
+			SPAN    = 20 #seconds
+			dnow    = new Date();
+			from    = Math.ceil(dnow.getTime()/1000 - SPAN) 
+			targets = []
+
+			for val in replies
+				ii = parseInt val.substring(5), 10
+				if ii > from
+					console.log ii + " is in the count"
+					targets.push "Yb:S:"+ii;
+				else
+					console.log ii + " is out of count"
+				# node.js で時刻見るより redis に入れるときに EXPIRE が SPAN 秒のやつも追加で入れちゃっていい気もしてきた
+
+
+			client.mget targets, (err, replies) ->
+				soku = 0
+				for val in replies
+					soku += parseInt val
+				soku = soku/replies.length if replies.length
+				console.log "soku: " + soku
+				data =
+					currentSoku: soku
+				socket.emit 'currentSoku', data: data
+				socket.broadcast.emit 'currentSoku', data: data
+		true;
+
 	socket.on 'oquno', (data) ->
 		socket.broadcast.emit 'oquno'
 

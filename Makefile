@@ -5,7 +5,7 @@ REDISCLI = redis-cli
 
 
 run: $(OBJS)
-	$(CC) app.coffee
+	-$(CC) app.coffee
 
 .coffee.js:
 	$(CC) -c $<

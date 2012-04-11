@@ -10,6 +10,11 @@ socket.on 'yabai', (msg) ->
 	yabai = msg.data.yabai
 	$('#display').text(yabai)
 
+socket.on 'currentSoku', (msg) ->
+	currentSoku = msg.data.currentSoku
+	$('#groovegauge').width(currentSoku*30)
+	$('#currentSoku').text(currentSoku)
+
 socket.on 'oquno', (msg) ->
 	attr =
 		title: 'oquno'
