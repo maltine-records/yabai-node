@@ -23,6 +23,9 @@ socket.on 'youpy', (msg) ->
 		href: 'http://oq.la/y2'
 	$('head').append($('<link>').attr(attr))
 
+socket.on 'reload', (msg) ->
+	location.reload()
+
 socket.on 'announce', (msg) ->
 	$('#announce').text(msg.announce)
 
@@ -34,6 +37,9 @@ socket.on 'announce', (msg) ->
 
 @youpy = ()->
 	socket.emit 'youpy', [1]
+
+@reload = ()->
+	socket.emit 'reload', [1]
 
 @announce = ()->
 	data =
