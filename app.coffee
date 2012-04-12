@@ -76,10 +76,7 @@ io.sockets.on 'connection', (socket) ->
 			for val in replies
 				ii = parseInt val.substring(5), 10
 				if ii > from
-					console.log ii + " is in the count"
 					targets.push "Yb:S:"+ii;
-				else
-					console.log ii + " is out of count"
 				# node.js で時刻見るより redis に入れるときに EXPIRE が SPAN 秒のやつも追加で入れちゃっていい気もしてきた
 
 
@@ -88,7 +85,6 @@ io.sockets.on 'connection', (socket) ->
 				for val in replies
 					soku += parseInt val
 				soku = soku/replies.length if replies.length
-				console.log "soku: " + soku
 				data =
 					currentSoku: soku
 				socket.emit 'currentSoku', data: data
