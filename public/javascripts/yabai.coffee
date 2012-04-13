@@ -35,16 +35,16 @@ socket.on 'announce', (msg) ->
 	$('#announce').text(msg.announce)
 
 @yabai = () ->
-	socket.emit 'yabai', [1]
+	socket.emit 'yabai'
 
 @oquno = ()->
-	socket.emit 'oquno', [1]
+	socket.emit 'oquno'
 
 @youpy = ()->
-	socket.emit 'youpy', [1]
+	socket.emit 'youpy'
 
 @reload = ()->
-	socket.emit 'reload', [1]
+	socket.emit 'reload'
 
 @announce = ()->
 	data =

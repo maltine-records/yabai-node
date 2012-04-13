@@ -60,6 +60,9 @@ io.sockets.on 'connection', (socket) ->
 	socket.on 'youpy', (data) ->
 		socket.broadcast.emit 'youpy'
 
+	socket.on 'reload', (data) ->
+		socket.broadcast.emit 'reload'
+
 	socket.on 'announce', (data) ->
 		socket.broadcast.emit 'announce', data
 
