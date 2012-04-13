@@ -66,32 +66,39 @@ io.sockets.on 'connection', (socket) ->
 app.listen(process.env.PORT || 3000)
 
 updateSoku = (socket) ->
-	dnow  = new Date()
-	dh    = new Date(dnow.getFullYear(), dnow.getMonth(), dnow.getDate(), dnow.getHours(), 0, 0, 0)
-	dm    = new Date(dnow.getFullYear(), dnow.getMonth(), dnow.getDate(), dnow.getHours(), dnow.getMinutes(), 0, 0)
+	now  = new Date()
+	year = now.getFullYear()
+	month = now.getMonth()
+	date = now.getDate()
+	hours = now.getHours()
+	minutes = now.getMinutes()
+
+	dh    = new Date(year, month, date, hours, 0, 0, 0)
+	dm    = new Date(year, month, date, hours, minutes, 0, 0)
 	keynameHour = "Yb:H:" + Math.ceil(dh.getTime()/1000)
 	keynameMin  = "Yb:M:" + Math.ceil(dm.getTime()/1000)
-	keynameSec  = "Yb:S:" + Math.ceil(dnow.getTime()/1000)
+	keynameSec  = "Yb:S:" + Math.ceil(now.getTime()/1000)
 
 	client.incr keynameHour
 	client.incr keynameMin
 	client.incr keynameSec
 	# depends redis 2.2 or lator
-	client.expire keynameHour, 60*60*24*3
-	client.expire keynameMin,  60*60*3
-	client.expire keynameSec,  60*3
+	client.expire keynameHour, (60 * 60 * 24) * 3
+	client.expire keynameMin,  (60 * 60) * 3
+	client.expire keynameSec,  60 * 3
 
 	client.keys 'Yb:S:*', (err, replies) ->
 		SPAN    = 20 #seconds
-		dnow    = new Date();
-		from    = Math.ceil(dnow.getTime()/1000 - SPAN) 
+		now    = new Date();
+		from    = Math.ceil(now.getTime()/1000 - SPAN) 
 		targets = []
 
 		for val in replies
 			ii = parseInt val.substring(5), 10
 			if ii > from
-				targets.push "Yb:S:"+ii;
-			# node.js で時刻見るより redis に入れるときに EXPIRE が SPAN 秒のやつも追加で入れちゃっていい気もしてきた
+				targets.push "Yb:S:" + ii
+		# node.js で時刻見るより redis に入れるときに
+		# EXPIRE が SPAN 秒のやつも追加で入れちゃっていい気もしてきた
 
 
 		client.mget targets, (err, replies) ->
