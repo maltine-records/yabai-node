@@ -16,6 +16,7 @@ socket.on 'currentSoku', (msg) ->
 	$('#currentSoku').text(currentSoku)
 
 socket.on 'oquno', (msg) ->
+	return unless location.pathname == '/'
 	attr =
 		title: 'oquno'
 		alt: 'oquno'
@@ -23,12 +24,14 @@ socket.on 'oquno', (msg) ->
 	$('#display').prepend($('<img>').attr(attr))
 
 socket.on 'youpy', (msg) ->
+	return unless location.pathname == '/'
 	attr =
 		rel: 'stylesheet'
 		href: 'http://oq.la/y2'
 	$('head').append($('<link>').attr(attr))
 
 socket.on 'reload', (msg) ->
+	return unless location.pathname == '/'
 	location.reload()
 
 socket.on 'announce', (msg) ->
