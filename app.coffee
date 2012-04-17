@@ -67,6 +67,9 @@ io.sockets.on 'connection', (socket) ->
 	socket.on 'announce', (data) ->
 		socket.broadcast.emit 'announce', data
 
+	socket.on 'background', (data) ->
+		socket.broadcast.emit 'background', data
+
 app.listen(process.env.PORT || 3000)
 
 updateSoku = (socket) ->

@@ -35,7 +35,14 @@ socket.on 'reload', (msg) ->
 	location.reload()
 
 socket.on 'announce', (msg) ->
+	return unless location.pathname == '/'
 	$('#announce').text(msg.announce)
+
+socket.on 'background', (msg) ->
+	return unless location.pathname == '/'
+	attr =
+		background: msg.background
+	$('body').attr(attr)
 
 @yabai = () ->
 	socket.emit 'yabai'
@@ -54,3 +61,7 @@ socket.on 'announce', (msg) ->
 		announce: $('#announce').val()
 	socket.emit 'announce', data
 
+@background = ()->
+	data =
+		background: $('#background').val()
+	socket.emit 'background', data

@@ -1,11 +1,20 @@
 <h1><%= @data.title %></h1>
+<button onClick='yabai();' type='button' name='yabai' value='yabai'>YA☆BA☆I</button>
+<div id='display'>YABAI: <%= @data.yabai %></div>
+<p>
+<img id="groovegauge" src="img/groovegauge.png" width="1" height="5" alt="no resolution under a second" /><br />
+<small>Soku:<span id="currentSoku"><%= @data.currentSoku %></span></small>
+</p>
+<br />
 <button onClick='oquno();' type='button' name='oquno' value='oquno'>o☆qu☆no</button>
 <button onClick='youpy();' type='button' name='youpy' value='youpy'>yo☆u☆py</button>
 <button onClick='pikachu();' type='button' name='pikachu' value='pikachu'>pi☆ka☆chu</button>
-<button onClick='reload();' type='button' name='reload' value='reload'>Reload</button>
 <br />
-<input id='announce' type='text' />
 <button onClick='announce();' type='button' name='announce' value='announce'>アナウンス</button>
+<input id='announce' type='text' />
 <br />
-<div id='display'><%= @data.yabai %></div>
+<button onClick='background();' type='button' name='background' value='background'>背景</button>
+<input id='background' type='text' />
+<br />
+<button onClick='reload();' type='button' name='reload' value='reload'>Reload</button>
 
