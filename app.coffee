@@ -52,6 +52,7 @@ io.sockets.on 'connection', (socket) ->
 			socket.emit 'yabai', data: data
 			socket.broadcast.emit 'yabai', data: data
 		updateSoku(socket)
+		incrYabai()
 
 
 	socket.on 'oquno', (data) ->
@@ -109,8 +110,34 @@ updateSoku = (socket) ->
 			for val in replies
 				soku += parseInt val
 			soku = soku/replies.length if replies.length
+			client.set "Yabai:Soku", soku
 			data =
 				currentSoku: soku
 			socket.emit 'currentSoku', data: data
 			socket.broadcast.emit 'currentSoku', data: data
 
+incrYabai = () ->
+	date = new Date()
+	yy = date.getYear()
+	mm = date.getMonth() + 1
+	dd = date.getDate()
+	if yy < 2000
+		yy += 1900
+	if mm < 10
+		mm = "0" + mm
+	if dd < 10
+		dd = "0" + dd
+	fmt_date = "#{yy}-#{mm}-#{dd}"
+
+	hh = date.getHours()
+	mm = date.getMinutes()
+	ss = date.getSeconds()
+	if hh < 10
+		hh = "0" + hh
+	if mm < 10
+		mm = "0" + mm
+	if ss < 10
+		ss = "0" + ss
+	fmt_time = "#{hh}:#{mm}:#{ss}"
+
+	client.incr "Yabai:#{fmt_date}_#{fmt_time}"
