@@ -29,7 +29,12 @@ socket.on 'youpy', (msg) ->
 		rel: 'stylesheet'
 		href: 'http://oq.la/y2'
 	$('head').append($('<link>').attr(attr))
-
+socket.on 'pikachu', (msg) ->
+	return unless location.pathname == '/'
+	attr =
+		background: '/img/pikachu.gif'
+	$('body').attr(attr)
+	
 socket.on 'reload', (msg) ->
 	return unless location.pathname == '/'
 	location.reload()
@@ -52,6 +57,9 @@ socket.on 'background', (msg) ->
 
 @youpy = ()->
 	socket.emit 'youpy'
+
+@pikachu = ()->
+	socket.emit 'pikachu'
 
 @reload = ()->
 	socket.emit 'reload'

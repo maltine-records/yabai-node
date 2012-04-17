@@ -61,6 +61,9 @@ io.sockets.on 'connection', (socket) ->
 	socket.on 'youpy', (data) ->
 		socket.broadcast.emit 'youpy'
 
+	socket.on 'pikachu', (data) ->
+		socket.broadcast.emit 'pikachu'
+
 	socket.on 'reload', (data) ->
 		socket.broadcast.emit 'reload'
 
