@@ -30,3 +30,7 @@ install w/ npm
 
 - cluster
 
+fire images
+===========
+
+- http://hnnhn.com/fire/json/
