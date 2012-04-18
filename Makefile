@@ -13,7 +13,7 @@ run: $(OBJS)
 	$(CC) -c $<
 
 clean:
-	-$(REDISCLI) del yabai
+	-$(REDISCLI) FLUSHDB
 	rm -f $(OBJS) $(TARGET)
 
 view: $(TARGET)
