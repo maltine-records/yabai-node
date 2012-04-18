@@ -88,9 +88,9 @@ updateSoku = (socket) ->
 
 	dh    = new Date(year, month, date, hours, 0, 0, 0)
 	dm    = new Date(year, month, date, hours, minutes, 0, 0)
-	keynameHour = "Yb:H:" + Math.ceil(dh.getTime()/1000)
-	keynameMin  = "Yb:M:" + Math.ceil(dm.getTime()/1000)
-	keynameSec  = "Yb:S:" + Math.ceil(now.getTime()/1000)
+	keynameHour = "Yabai:H:" + Math.ceil(dh.getTime()/1000)
+	keynameMin  = "Yabai:M:" + Math.ceil(dm.getTime()/1000)
+	keynameSec  = "Yabai:S:" + Math.ceil(now.getTime()/1000)
 
 	client.incr keynameHour
 	client.incr keynameMin
@@ -100,19 +100,17 @@ updateSoku = (socket) ->
 	client.expire keynameMin,  (60 * 60) * 3
 	client.expire keynameSec,  60 * 3
 
-	client.keys 'Yb:S:*', (err, replies) ->
+	client.keys 'Yabai:S:*', (err, replies) ->
 		SPAN    = 20 #seconds
-		now    = new Date();
+		now     = new Date();
 		from    = Math.ceil(now.getTime()/1000 - SPAN) 
 		targets = []
 
+		skiplen = "Yabai:S:".length
 		for val in replies
-			ii = parseInt val.substring(5), 10
+			ii = parseInt val.substring(skiplen), 10
 			if ii > from
-				targets.push "Yb:S:" + ii
-		# node.js で時刻見るより redis に入れるときに
-		# EXPIRE が SPAN 秒のやつも追加で入れちゃっていい気もしてきた
-
+				targets.push "Yabai:S:" + ii
 
 		client.mget targets, (err, replies) ->
 			soku = 0
