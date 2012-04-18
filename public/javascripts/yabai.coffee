@@ -39,6 +39,15 @@ socket.on 'reload', (msg) ->
 	return unless location.pathname == '/'
 	location.reload()
 
+socket.on 'normal', (msg) ->
+	return unless location.pathname == '/'
+	# oquno
+	$("#display > img[src*='oq.la']").remove()
+	# youpy
+	$("head > link[href*='oq.la']").remove()
+	# pikachu
+	$("body").removeAttr("background")
+
 socket.on 'announce', (msg) ->
 	return unless location.pathname == '/'
 	$('#announce').text(msg.announce)
@@ -63,6 +72,9 @@ socket.on 'background', (msg) ->
 
 @reload = ()->
 	socket.emit 'reload'
+
+@normal = ()->
+	socket.emit 'normal'
 
 @announce = ()->
 	data =

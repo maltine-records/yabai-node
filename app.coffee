@@ -67,6 +67,9 @@ io.sockets.on 'connection', (socket) ->
 	socket.on 'reload', (data) ->
 		socket.broadcast.emit 'reload'
 
+	socket.on 'normal', (data) ->
+		socket.broadcast.emit 'normal'
+
 	socket.on 'announce', (data) ->
 		socket.broadcast.emit 'announce', data
 
