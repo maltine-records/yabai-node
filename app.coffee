@@ -73,6 +73,13 @@ io.sockets.on 'connection', (socket) ->
 	socket.on 'announce', (data) ->
 		socket.broadcast.emit 'announce', data
 
+	socket.on 'fire', (req) ->
+		json = require 'jsonreq'
+		json.get 'http://hnnhn.com/fire/json/', (err, res) ->
+			data =
+				images: res.images
+			socket.emit 'fire', data
+
 	socket.on 'background', (data) ->
 		socket.broadcast.emit 'background', data
 

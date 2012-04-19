@@ -52,6 +52,12 @@ socket.on 'announce', (msg) ->
 	return unless location.pathname == '/'
 	$('#announce').text(msg.announce)
 
+socket.on 'fire', (msg) ->
+	$('#fire > li').remove()
+	for image in msg.images
+		for id, url of image
+			$('#fire').append($('<li>').text("#{id}: #{url}"))
+
 socket.on 'background', (msg) ->
 	return unless location.pathname == '/'
 	attr =
@@ -80,6 +86,9 @@ socket.on 'background', (msg) ->
 	data =
 		announce: $('#announce').val()
 	socket.emit 'announce', data
+
+@fire = () ->
+	socket.emit 'fire'
 
 @background = ()->
 	data =
