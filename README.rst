@@ -40,8 +40,7 @@ Note
         json = require 'jsonreq'
 
         json.get 'http://hnnhn.com/fire/json/', (err, data) ->
-                for key, pair of data.images
-                        for id, url of pair
+                for image in data.images
+                        for id, url of image
                                 console.log id
                                 console.log url
-
