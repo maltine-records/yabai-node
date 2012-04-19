@@ -9,6 +9,7 @@
 <button onClick='oquno();' type='button' name='oquno' value='oquno'>o☆qu☆no</button>
 <button onClick='youpy();' type='button' name='youpy' value='youpy'>yo☆u☆py</button>
 <button onClick='pikachu();' type='button' name='pikachu' value='pikachu'>pi☆ka☆chu</button>
+<button onClick='normal();' type='button' name='normal' value='normal'>Normal</button>
 <br />
 <button onClick='announce();' type='button' name='announce' value='announce'>アナウンス</button>
 <input id='announce' type='text' />
