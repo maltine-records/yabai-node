@@ -15,6 +15,7 @@
 <br />
 <button onClick='background();' type='button' name='background' value='background'>背景</button>
 <input id='background' type='text' />
+<button onClick='fire();' type='button' name='fire' value='fire'>神輿</button>
 <br />
 <button onClick='reload();' type='button' name='reload' value='reload'>Reload</button>
 

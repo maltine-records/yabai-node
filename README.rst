@@ -30,3 +30,18 @@ install w/ npm
 
 - cluster
 
+- jsonreq
+
+Note
+===
+
+::
+
+        json = require 'jsonreq'
+
+        json.get 'http://hnnhn.com/fire/json/', (err, data) ->
+                for key, pair of data.images
+                        for id, url of pair
+                                console.log id
+                                console.log url
+
