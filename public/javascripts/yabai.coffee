@@ -53,11 +53,12 @@ socket.on 'announce', (msg) ->
 	$('#announce').text(msg.announce)
 
 socket.on 'fire', (msg) ->
-	$('#fire > li').remove()
+	$('.fire').remove()
 	for image in msg.images
 		for id, url of image
 			attr =
-				onClick: "$('#background').val('#{url}')"
+				onClick: "$('#background').val('#{url}');background();"
+				class:   "fire"
 				type:    'button'
 				name:    id
 				value:   url
