@@ -56,7 +56,12 @@ socket.on 'fire', (msg) ->
 	$('#fire > li').remove()
 	for image in msg.images
 		for id, url of image
-			$('#fire').append($('<li>').text("#{id}: #{url}"))
+			attr =
+				onClick: "$('#background').val('#{url}')"
+				type:    'button'
+				name:    id
+				value:   url
+			$('#fire').append($('<button>').attr(attr).text(id))
 
 socket.on 'background', (msg) ->
 	return unless location.pathname == '/'
