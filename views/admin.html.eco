@@ -20,7 +20,7 @@
 <br />
 <br />
 <button onClick='background();' type='button' name='background' value='background'>背景</button>
-<input id='background' type='text' />
+<input id='background' type='text' size='64'/>
 <br />
 <button onClick='fire();' type='button' name='fire' value='fire'>神輿</button>
 <br />
