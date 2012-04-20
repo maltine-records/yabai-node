@@ -114,7 +114,7 @@ updateSoku = (socket) ->
 		targets = []
 
 		skiplen = "Yabai:S:".length
-		for val in replies.split(' ')
+		for val in replies
 			ii = parseInt val.substring(skiplen), 10
 			if ii > from
 				targets.push "Yabai:S:" + ii
