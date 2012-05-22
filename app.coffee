@@ -83,6 +83,32 @@ io.sockets.on 'connection', (socket) ->
 	socket.on 'background', (data) ->
 		socket.broadcast.emit 'background', data
 
+if cluster.isMaster
+	setInterval ->
+		client.keys 'Yabai:S:*', (err, replies) ->
+			SPAN    = 20 #seconds
+			now     = new Date();
+			from    = Math.ceil(now.getTime()/1000 - SPAN) 
+			targets = []
+
+			skiplen = "Yabai:S:".length
+			for val in replies
+				ii = parseInt val.substring(skiplen), 10
+				if ii > from
+					targets.push "Yabai:S:" + ii
+
+			client.mget targets, (err, replies) ->
+				soku = 0
+				try
+					for val in replies
+						soku += parseInt val, 10
+					soku = soku/replies.length if replies.length
+					client.set "Yabai:Soku", soku
+				catch e
+#					console.log e
+	, 1000
+
+
 app.listen(process.env.PORT || 3000)
 
 updateSoku = (socket) ->
@@ -107,28 +133,16 @@ updateSoku = (socket) ->
 	client.expire keynameMin,  (60 * 60) * 3
 	client.expire keynameSec,  60 * 3
 
-	client.keys 'Yabai:S:*', (err, replies) ->
-		SPAN    = 20 #seconds
-		now     = new Date();
-		from    = Math.ceil(now.getTime()/1000 - SPAN) 
-		targets = []
-
-		skiplen = "Yabai:S:".length
-		for val in replies
-			ii = parseInt val.substring(skiplen), 10
-			if ii > from
-				targets.push "Yabai:S:" + ii
-
-		client.mget targets, (err, replies) ->
-			soku = 0
-			for val in replies
-				soku += parseInt val
-			soku = soku/replies.length if replies.length
-			client.set "Yabai:Soku", soku
-			data =
+	client.get "Yabai:Soku", (err, reply) ->
+		try
+			soku = reply.toString()
+			data = 
 				currentSoku: soku
 			socket.emit 'currentSoku', data: data
 			socket.broadcast.emit 'currentSoku', data: data
+		catch e
+			console.error e
+
 
 incrYabai = () ->
 	date = new Date()
