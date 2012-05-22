@@ -54,8 +54,8 @@ socket.on 'announce', (msg) ->
 
 socket.on 'fire', (msg) ->
 	$('.fire').remove()
-	for image in msg.images
-		for id, url of image
+	for images in msg.images.glitch
+		for id, url of images
 			attr =
 				onClick: "$('#background').val('#{url}');background();"
 				class:   "fire"
