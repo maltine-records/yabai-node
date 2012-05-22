@@ -83,6 +83,19 @@ io.sockets.on 'connection', (socket) ->
 	socket.on 'background', (data) ->
 		socket.broadcast.emit 'background', data
 
+	setInterval ->
+		client.get "Yabai:Soku", (err, reply) ->
+			try
+				soku = reply.toString()
+				data = 
+					currentSoku: soku
+				socket.emit 'currentSoku', data: data
+				socket.broadcast.emit 'currentSoku', data: data
+			catch e
+				console.error e
+	,1000
+
+
 if cluster.isMaster
 	setInterval ->
 		client.keys 'Yabai:S:*', (err, replies) ->
@@ -132,16 +145,6 @@ updateSoku = (socket) ->
 	client.expire keynameHour, (60 * 60 * 24) * 3
 	client.expire keynameMin,  (60 * 60) * 3
 	client.expire keynameSec,  60 * 3
-
-	client.get "Yabai:Soku", (err, reply) ->
-		try
-			soku = reply.toString()
-			data = 
-				currentSoku: soku
-			socket.emit 'currentSoku', data: data
-			socket.broadcast.emit 'currentSoku', data: data
-		catch e
-			console.error e
 
 
 incrYabai = () ->
