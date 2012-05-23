@@ -1,0 +1,9 @@
+<h1 id="announce"><%= @data.title %></h1>
+<button onClick='yabai();' type='button' name='yabai' value='yabai'>YA☆BA☆I</button>
+<br />
+<div id='display'><%= @data.yabai %></div>
+<p>
+<img id="groovegauge" src="img/groovegauge.png" width="1" height="5" alt="no resolution under a second" /><br />
+<small>Soku:<span id="currentSoku"><%= @data.currentSoku %></span></small>
+</p>
+
