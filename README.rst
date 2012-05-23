@@ -35,20 +35,20 @@ install w/ npm
 ToDo
 ====
 
-- Redis$B$KF~$l$k%G!<%?%U%)!<%^%C%H$N8!F$(B
+- Redisに入れるデータフォーマットの検討
 
-  - UNIX$B;~4V$,N.9T$i$7$$$N$G=>$&$+$r8!F$(B
+  - UNIX時間が流行らしいので従うかを検討
 
-- iframe.html.eco $B$r:n@.$7!"(Biframe$B$K$h$kG[CV$KBP1~(B
+- iframe.html.eco を作成し、iframeによる配置に対応
 
-  - $B;~4V$,$J$1$l$P!"<B1?MQ$H0[$J$k;EAH$_$G$NF0:n$J$I$b8!F$(B
+  - 時間がなければ、実運用と異なる仕組みでの動作なども検討
 
-- $B%9%i%$%I$7$F%?%$%`%F!<%V%k$H$+%?%$%`%i%$%s$_$?$$(B
+- スライドしてタイムテーブルとかタイムラインみたい
 
-- $B%m%4$N0lMw$r9_$i$;$k$J$I$N8z2L$r$D$1$?$$(B
+- ロゴの一覧を降らせるなどの効果をつけたい
 
-  - API $B$,$^$@%m%4$N0lMw$r=P$7$F$$$J$$(B
+  - API がまだロゴの一覧を出していない
 
-- $B@*$$$K1~$8$F(BCSS$B%H%i%s%9%U%)!<%`$J$I$GJ70O5$$rJQ$($k(B
+- 勢いに応じてCSSトランスフォームなどで雰囲気を変える
 
 
