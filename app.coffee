@@ -176,4 +176,4 @@ incrYabai = () ->
 	client.incr "Yabai:#{fmt_date}_#{fmt_time}"
 	###
 
-	client.incr "Yabai:#{Math.floor((date)/1000)}"
+	client.incr "Yabai:yabai:#{Math.floor((date)/1000)}"
