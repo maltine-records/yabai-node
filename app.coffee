@@ -21,7 +21,7 @@ client.on "error", (err) ->
 
 app.get '/', (req, res) ->
 	# client.del('yabai', redis.print)
-	client.get 'yabai', (err, reply) ->
+	client.get 'Yabai:yabai', (err, reply) ->
 		data =
 			title: 'YABAI'
 			yabai: reply
@@ -47,7 +47,7 @@ io.sockets.on 'connection', (socket) ->
 	console.log 'connection'
 
 	socket.on 'yabai', (data) ->
-		client.incr 'yabai', (err, reply) ->
+		client.incr 'Yabai:yabai', (err, reply) ->
 			data =
 				yabai: reply
 			socket.emit 'yabai', data: data
