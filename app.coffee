@@ -41,6 +41,7 @@ else
 	app.listen process.env.PORT || 3000
 
 io = require('socket.io').listen app
+io.set "log level", 2
 
 io.sockets.on 'connection', (socket) ->
 	console.log 'connection'
