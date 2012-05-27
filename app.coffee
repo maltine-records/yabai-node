@@ -149,6 +149,8 @@ updateSoku = (socket) ->
 
 incrYabai = () ->
 	date = new Date()
+
+	###
 	yy = date.getYear()
 	mm = date.getMonth() + 1
 	dd = date.getDate()
@@ -172,3 +174,6 @@ incrYabai = () ->
 	fmt_time = "#{hh}:#{mm}:#{ss}"
 
 	client.incr "Yabai:#{fmt_date}_#{fmt_time}"
+	###
+
+	client.incr "Yabai:#{Math.floor((date)/1000)}"
