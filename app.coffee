@@ -101,8 +101,8 @@ if cluster.isMaster
 	setInterval ->
 		client.keys 'Yabai:S:*', (err, replies) ->
 			SPAN    = 20 #seconds
-			now     = new Date();
-			from    = Math.ceil(now.getTime()/1000 - SPAN) 
+			now     = new Date()
+			from    = Math.ceil(now.getTime()/1000 - SPAN)
 			targets = []
 
 			skiplen = "Yabai:S:".length
@@ -150,31 +150,4 @@ updateSoku = (socket) ->
 
 incrYabai = () ->
 	date = new Date()
-
-	###
-	yy = date.getYear()
-	mm = date.getMonth() + 1
-	dd = date.getDate()
-	if yy < 2000
-		yy += 1900
-	if mm < 10
-		mm = "0" + mm
-	if dd < 10
-		dd = "0" + dd
-	fmt_date = "#{yy}-#{mm}-#{dd}"
-
-	hh = date.getHours()
-	mm = date.getMinutes()
-	ss = date.getSeconds()
-	if hh < 10
-		hh = "0" + hh
-	if mm < 10
-		mm = "0" + mm
-	if ss < 10
-		ss = "0" + ss
-	fmt_time = "#{hh}:#{mm}:#{ss}"
-
-	client.incr "Yabai:#{fmt_date}_#{fmt_time}"
-	###
-
 	client.incr "Yabai:yabai:#{Math.floor((date)/1000)}"
