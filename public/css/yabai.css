@@ -1,0 +1,9 @@
+img.yabaiButton {
+    max-width: 100%;
+    height: auto;
+    width: auto\9; /* ie8 */
+}
+
+.ui-icon-twitter {
+     background: url(http://twitter.com/favicon.ico) no-repeat 0 50%;
+}

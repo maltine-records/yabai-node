@@ -1,9 +1,75 @@
-<h1 id="announce"><%= @data.title %></h1>
-<button onClick='yabai();' type='button' name='yabai' value='yabai'>YA☆BA☆I</button>
-<br />
-<div id='display'><%= @data.yabai %></div>
-<p>
-<img id="groovegauge" src="img/groovegauge.png" width="1" height="5" alt="no resolution under a second" /><br />
-<small>Soku:<span id="currentSoku"><%= @data.currentSoku %></span></small>
-</p>
+<div data-role="page" id="top">
+	<div data-role="header">
+		<a href="#timetable">タイムテーブル</a>
+		<h1>YABAI:</h1>
+		<h1 id="display"><%= @data.yabai %></h1>
+	</div><!-- /header -->
 
+	<div data-role="content">
+		<h3>Soku:<span id="currentSoku"><%= @data.currentSoku %></span>
+		<div data-role="collapsible-set">
+			<div data-role="collapsible" data-collapsed="false">
+				<h3>YABAI Button</h3>
+				<img src="img/button/YABAI.jpg" onClick="yabai();" class="yabaiButton"/>
+			</div>
+			<div data-role="collapsible" id="twitter_collaspible">
+				<h3>twitter #kabutine</h3>
+				<ul id="twitter" data-role="listview">
+				</ul>
+			</div>
+		</div>
+	</div><!-- /content -->
+	<div data-role="footer">
+		<a href="http://twitter.com/tomad" data-role="button" data-icon="twitter" data-iconpos="right" rel="external">follow us</a>
+	</div>
+
+</div><!-- /page -->
+<div data-role="page" id="timetable">
+	<div data-role="header">
+		<a href="#top" data-icon="back">戻る</a>
+		<h1>タイムテーブル</h1>
+	</div>
+	<div data-role="content">
+		<ul data-role="listview">
+			<li>20時30分~21時10分 (40分) Gassyoh</li>
+			<li>21時10分~21時40分 (30分) banvox</li>
+			<li>21時40分~22時10分 (30分) コバルト爆弾αΩ</li>
+			<li>22時10分~22時40分 (30分) miii</li>
+			<li>22時40分~23時20分 (40分) Submerse</li>
+			<li>23時20分~23時40分 (20分) 三毛猫ホームレス</li>
+			<li>23時40分~24時10分 (30分) fazerock</li>
+			<li>24時10分~24時40分 (30分) DJシーザー</li>
+			<li>24時40分~25時10分 (30分) Pollarstars</li>
+			<li>25時10分~25時40分 (30分) DJUSYN</li>
+			<li>25時40分~26時20分 (40分) RE:NDZ</li>
+			<li>26時20分~26時50分 (30分) DJ ニッチ</li>
+			<li>26時50分~27時10分 (20分) オノマトペ大臣</li>
+			<li>27時10分~27時40分 (30分) tofubeats</li>
+			<li>27時40分~28時20分 (40分) okadada</li>
+			<li>28時20分~29時00分 (40分) DJ WILDPARTY</li>
+		</ul>
+	</div>
+</div>
+<script type="text/javascript">
+	$(function() {
+		$('#twitter_collaspible').bind('expand',function(){
+			var url="http://search.twitter.com/search.json?callback=?";
+			var request={q:"#kabutine",lang:"ja",rpp:50};
+			$.getJSON(url,request,loadTwitter);
+		}).bind('collapse',function(){
+		});
+		yabai();
+	});
+	function loadTwitter(data) {
+		$("#twitter").empty();
+		for(var i=0; i < data.results.length; i++) {
+			var li = "<li>";
+			//li += "<img width=100% height=100% src="+data.results[i].profile_image_url+"/>";
+			li += "<h3 style=\"white-space: normal;\">"+data.results[i].from_user+"</h3>";
+			li += "<p style=\"white-space: normal;\">"+data.results[i].text+"</p>";
+			li += "</li>";
+			$("#twitter").append(li);
+		};
+		$("#twitter").listview("refresh");
+	}
+</script>

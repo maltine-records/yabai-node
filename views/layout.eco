@@ -4,7 +4,10 @@
 		<title><%= @data.title %></title>
 		<meta charset="UTF-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+		<link rel="stylesheet" href="/css/jquery.mobile-1.1.0.min.css" />
+		<link rel="stylesheet" href="/css/yabai.css" />
 		<script src="/javascripts/jquery-1.7.2.min.js"></script>
+		<script src="/javascripts/jquery.mobile-1.1.0.min.js"></script>
 		<script src="/socket.io/socket.io.js"></script>
 		<script src="/javascripts/yabai.js"></script>
 	</head>
