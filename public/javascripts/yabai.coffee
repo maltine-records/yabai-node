@@ -21,7 +21,8 @@ socket.on 'oquno', (msg) ->
 		title: 'oquno'
 		alt: 'oquno'
 		src: 'http://oq.la/i'
-	$('#display').prepend($('<img>').attr(attr))
+	$('#oquno').append($('<img>').attr(attr))
+	$.mobile.changePage($("#oquno"))
 
 socket.on 'youpy', (msg) ->
 	return unless location.pathname == '/'
@@ -42,7 +43,8 @@ socket.on 'reload', (msg) ->
 socket.on 'normal', (msg) ->
 	return unless location.pathname == '/'
 	# oquno
-	$("#display > img[src*='oq.la']").remove()
+	# $("#oquno > img[src*='oq.la']").remove()
+	$.mobile.changePage($("#top"))
 	# youpy
 	$("head > link[href*='oq.la']").remove()
 	# pikachu
