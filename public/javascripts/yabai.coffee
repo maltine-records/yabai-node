@@ -17,12 +17,7 @@ socket.on 'currentSoku', (msg) ->
 
 socket.on 'oquno', (msg) ->
 	return unless location.pathname == '/'
-	attr =
-		title: 'oquno'
-		alt: 'oquno'
-		src: 'http://oq.la/i'
-	$('#oquno').append($('<img>').attr(attr))
-	$.mobile.changePage($("#oquno"))
+	$('.ui-content').css('background-image', 'url(http://oq.la/i)')
 
 socket.on 'youpy', (msg) ->
 	return unless location.pathname == '/'
@@ -32,9 +27,7 @@ socket.on 'youpy', (msg) ->
 	$('head').append($('<link>').attr(attr))
 socket.on 'pikachu', (msg) ->
 	return unless location.pathname == '/'
-	attr =
-		background: '/img/pikachu.gif'
-	$('body').attr(attr)
+	$('.ui-content').css('background-image', 'url(/img/pikachu.gif)')
 	
 socket.on 'reload', (msg) ->
 	return unless location.pathname == '/'
@@ -43,12 +36,12 @@ socket.on 'reload', (msg) ->
 socket.on 'normal', (msg) ->
 	return unless location.pathname == '/'
 	# oquno
-	# $("#oquno > img[src*='oq.la']").remove()
+	$("#image > img").remove()
 	$.mobile.changePage($("#top"))
 	# youpy
 	$("head > link[href*='oq.la']").remove()
 	# pikachu
-	$("body").removeAttr("background")
+	$('.ui-content').css('background-image', 'none')
 
 socket.on 'announce', (msg) ->
 	return unless location.pathname == '/'
@@ -68,9 +61,8 @@ socket.on 'fire', (msg) ->
 
 socket.on 'background', (msg) ->
 	return unless location.pathname == '/'
-	attr =
-		background: msg.background
-	$('body').attr(attr)
+	$('.ui-content').css('background-image', 'url(' + msg.background + ')')
+	
 
 @yabai = () ->
 	socket.emit 'yabai'

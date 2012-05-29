@@ -7,3 +7,9 @@ img.yabaiButton {
 .ui-icon-twitter {
      background: url(http://twitter.com/favicon.ico) no-repeat 0 50%;
 }
+
+.ui-content {
+    background-position:center center;
+    background-size: contain;
+}
+

@@ -51,7 +51,12 @@
 		</ul>
 	</div>
 </div>
-<div data-role="page" id="oquno">
+<div data-role="page" id="kakusi">
+	<div data-role="header">
+		<a href="#top" data-icon="back">戻る</a>
+	</div>
+	<div data-role="content" id="image">
+	</div>
 </div>
 <script type="text/javascript">
 	$(function() {
