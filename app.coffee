@@ -34,6 +34,19 @@ app.get '/cebui', (req, res) ->
 			yabai: reply
 		res.render 'admin.html.eco', data: data
 
+
+# API
+app.get '/soku', (req, res) ->
+	client.get "Yabai:Soku", (err, reply) ->
+		try
+			soku = reply.toString()
+			data = 
+				soku: soku
+			res.send(data)
+		catch e
+			res.send("{}");
+
+
 if cluster.isMaster
 	for i in [1...os.cpus().length]
 		worker = cluster.fork()
