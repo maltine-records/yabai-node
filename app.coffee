@@ -38,7 +38,7 @@ app.get '/cebui', (req, res) ->
 # API
 app.get '/yabasa', (req, res) ->
 	client.get "Yabai:Soku", (err, reply) ->
-		res.charset = 'ISO-8859-1';
+		res.charset = 'utf-8';
 		res.header('Content-Type', 'application/json');
 		try
 			soku = reply.toString()
@@ -127,7 +127,7 @@ if cluster.isMaster
 					targets.push "Yabai:S:" + ii
 
 			client.mget targets, (err, replies) ->
-				soku = 0
+				soku = 1
 				try
 					for val in replies
 						soku += parseInt val, 10
@@ -135,6 +135,7 @@ if cluster.isMaster
 					client.set "Yabai:Soku", soku
 				catch e
 #					console.log e
+					client.set "Yabai:Soku", soku
 	, 1000
 
 
