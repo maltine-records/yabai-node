@@ -38,7 +38,7 @@ app.get '/cebui', (req, res) ->
 # API
 app.get '/yabasa', (req, res) ->
 	client.get "Yabai:Soku", (err, reply) ->
-		res.charset = 'ISO-8859-1';
+		res.charset = 'utf-8';
 		res.header('Content-Type', 'application/json');
 		try
 			soku = reply.toString()
