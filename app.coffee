@@ -127,7 +127,7 @@ if cluster.isMaster
 					targets.push "Yabai:S:" + ii
 
 			client.mget targets, (err, replies) ->
-				soku = 0
+				soku = 1
 				try
 					for val in replies
 						soku += parseInt val, 10
@@ -135,6 +135,7 @@ if cluster.isMaster
 					client.set "Yabai:Soku", soku
 				catch e
 #					console.log e
+					client.set "Yabai:Soku", soku
 	, 1000
 
 
