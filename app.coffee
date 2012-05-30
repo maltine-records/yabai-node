@@ -127,11 +127,12 @@ if cluster.isMaster
 					targets.push "Yabai:S:" + ii
 
 			client.mget targets, (err, replies) ->
-				soku = 1
+				soku = 1.0
 				try
-					for val in replies
-						soku += parseInt val, 10
-					soku = soku/replies.length if replies.length
+					# sigmoid: 1/1+exp(-ax)
+					# max is 1, and min(0) is 0.5. so 8*sigmoid-3 will be [1,5]
+					# if a is smaller, soku will increase slower
+					soku = 8.0 / (1.0 + Math.exp(-replies.length/10)) - 3 if replies.length
 					client.set "Yabai:Soku", soku
 				catch e
 #					console.log e
