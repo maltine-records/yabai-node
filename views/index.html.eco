@@ -72,7 +72,7 @@
 		$("#twitter").empty();
 		for(var i=0; i < data.results.length; i++) {
 			var li = "<li>";
-			//li += "<img width=100% height=100% src="+data.results[i].profile_image_url+"/>";
+			li += "<img width=100% height=100% src="+data.results[i].profile_image_url+" />";
 			li += "<h3 style=\"white-space: normal;\">"+data.results[i].from_user+"</h3>";
 			li += "<p style=\"white-space: normal;\">"+data.results[i].text+"</p>";
 			li += "</li>";
