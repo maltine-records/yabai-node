@@ -20,6 +20,16 @@ view: $(TARGET)
 	$(PAGER) $?
 
 
+setup:
+	@npm install coffee-script
+	@npm install express
+	@npm install socket.io
+	@npm install eco
+	@npm install redis
+	@npm install cluster
+	@npm install jsonreq
+
+
 dbsize:
 	$(REDISCLI) dbsize
 
