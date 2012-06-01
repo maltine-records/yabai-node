@@ -9,7 +9,7 @@ socket.on 'message', (msg) ->
 socket.on 'yabai', (msg) ->
 	yabai = msg.data.yabai
 	$('#display').text(yabai)
-	$('#yabai').attr('src', 'img/button/YABAI_on.jpg')
+	$('#yabai').attr('src', 'img/button/YABAI_hit.jpg')
 	setTimeout () ->
 		$('#yabai').attr('src', 'img/button/YABAI.jpg')
 	, 100
