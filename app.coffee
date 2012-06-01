@@ -115,7 +115,7 @@ io.sockets.on 'connection', (socket) ->
 if cluster.isMaster
 	setInterval ->
 		client.keys 'Yabai:S:*', (err, replies) ->
-			SPAN    = 20 #seconds
+			SPAN    = 60 #seconds
 			now     = new Date()
 			from    = Math.ceil(now.getTime()/1000 - SPAN)
 			targets = []
