@@ -1,4 +1,4 @@
-socket = io.connect()
+socket = io.connect('http://maltinerecords2.cs8.biz')
 
 socket.on 'connect', () ->
 	console.log 'connect'
