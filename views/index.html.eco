@@ -11,7 +11,7 @@
 		<div data-role="collapsible-set">
 			<div data-role="collapsible" data-collapsed="false">
 				<h3>YABAI Button</h3>
-				<img src="img/button/YABAI.jpg" onClick="yabai();" class="yabaiButton" id="yabai"/>
+				<img src="img/button/YABAI.jpg" onClick="yabai();" class="yabaiButton" />
 			</div>
 			<div data-role="collapsible" id="twitter_collaspible">
 				<h3>twitter #kabutine</h3>
@@ -66,6 +66,7 @@
 			$.getJSON(url,request,loadTwitter);
 		}).bind('collapse',function(){
 		});
+		yabai();
 	});
 	function loadTwitter(data) {
 		$("#twitter").empty();

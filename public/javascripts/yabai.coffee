@@ -1,4 +1,4 @@
-socket = io.connect('http://maltinerecords2.cs8.biz')
+socket = io.connect()
 
 socket.on 'connect', () ->
 	console.log 'connect'
@@ -9,9 +9,9 @@ socket.on 'message', (msg) ->
 socket.on 'yabai', (msg) ->
 	yabai = msg.data.yabai
 	$('#display').text(yabai)
-	$('#yabai').attr('src', 'img/button/YABAI_hit.jpg')
+	$('.yabaiButton').attr('src', 'img/button/YABAI_hit.jpg')
 	setTimeout () ->
-		$('#yabai').attr('src', 'img/button/YABAI.jpg')
+		$('.yabaiButton').attr('src', 'img/button/YABAI.jpg')
 	, 100
 
 
