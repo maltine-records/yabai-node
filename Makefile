@@ -16,9 +16,9 @@ autorespawn: $(OBJS)
 .coffee.js:
 	$(CC) -c $<
 
-clean:
-	-$(REDISCLI) FLUSHDB
-	rm -f $(OBJS) $(TARGET)
+#clean:
+#	-$(REDISCLI) FLUSHDB
+#	rm -f $(OBJS) $(TARGET)
 
 view: $(TARGET)
 	$(PAGER) $?
