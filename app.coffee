@@ -65,8 +65,8 @@ io.sockets.on 'connection', (socket) ->
 		client.incr 'Yabai:yabai', (err, reply) ->
 			data =
 				yabai: reply
-			socket.emit 'yabai', data: data
-			socket.broadcast.emit 'yabai', data: data
+			socket.emit 'yabai:ore', data: data
+			socket.broadcast.emit 'yabai:orera', data: data
 		updateSoku(socket)
 		incrYabai()
 

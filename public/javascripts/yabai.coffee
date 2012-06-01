@@ -6,14 +6,21 @@ socket.on 'connect', () ->
 socket.on 'message', (msg) ->
 	console.log msg
 
-socket.on 'yabai', (msg) ->
+socket.on 'yabai:ore', (msg) ->
+	yabai = msg.data.yabai
+	$('#display').text(yabai)
+	$('.yabaiButton').attr('src', 'img/button/YABAI_on.jpg')
+	setTimeout () ->
+		$('.yabaiButton').attr('src', 'img/button/YABAI.jpg')
+	, 100
+
+socket.on 'yabai:orera', (msg) ->
 	yabai = msg.data.yabai
 	$('#display').text(yabai)
 	$('.yabaiButton').attr('src', 'img/button/YABAI_hit.jpg')
 	setTimeout () ->
 		$('.yabaiButton').attr('src', 'img/button/YABAI.jpg')
 	, 100
-
 
 
 socket.on 'currentSoku', (msg) ->
