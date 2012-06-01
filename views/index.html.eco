@@ -66,13 +66,6 @@
 			$.getJSON(url,request,loadTwitter);
 		}).bind('collapse',function(){
 		});
-		$('#yabai').bind('tap', function() {
-			$(this).attr('src', 'img/button/YABAI_on.jpg');
-			setTimeout(function ()
-			{
-				$('#yabai').attr('src', 'img/button/YABAI.jpg');
-			}, 100);
-		});
 	});
 	function loadTwitter(data) {
 		$("#twitter").empty();
