@@ -9,6 +9,10 @@ PAGER    = lv
 run: $(OBJS)
 	-$(CC) app.coffee
 
+
+autorespawn: $(OBJS)
+	while :; do $(CC) app.coffee ; date >> respawn.log; done
+
 .coffee.js:
 	$(CC) -c $<
 
