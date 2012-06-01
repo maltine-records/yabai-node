@@ -38,15 +38,15 @@ app.get '/cebui', (req, res) ->
 # API
 app.get '/yabasa', (req, res) ->
 	client.get "Yabai:Soku", (err, reply) ->
-		res.charset = 'utf-8';
-		res.header('Content-Type', 'application/json');
+		res.charset = 'utf-8'
+		res.header 'Content-Type', 'application/json'
 		try
 			soku = reply.toString()
-			data = 
+			data =
 				soku: soku
 			res.send(data)
 		catch e
-			res.send("{}");
+			res.send("{}")
 
 
 if cluster.isMaster
@@ -103,7 +103,7 @@ io.sockets.on 'connection', (socket) ->
 		client.get "Yabai:Soku", (err, reply) ->
 			try
 				soku = reply.toString()
-				data = 
+				data =
 					currentSoku: soku
 				socket.emit 'currentSoku', data: data
 				socket.broadcast.emit 'currentSoku', data: data
