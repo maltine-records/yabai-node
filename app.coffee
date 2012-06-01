@@ -69,7 +69,8 @@ io.sockets.on 'connection', (socket) ->
 			socket.broadcast.emit 'yabai:orera', data: data
 		updateSoku(socket)
 		incrYabai()
-
+		client.incr 'Yabai:odo'
+		client.incr 'Yabai:trip:a'
 
 	socket.on 'oquno', (data) ->
 		socket.broadcast.emit 'oquno'
