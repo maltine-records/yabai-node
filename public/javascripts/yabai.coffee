@@ -9,19 +9,14 @@ socket.on 'message', (msg) ->
 socket.on 'yabai:ore', (msg) ->
 	yabai = msg.data.yabai
 	$('#display').text(yabai)
-	$('.yabaiButton').attr('src', 'img/button/YABAI_on.jpg')
-	setTimeout () ->
-		$('.yabaiButton').attr('src', 'img/button/YABAI.jpg')
-	, 100
 
 socket.on 'yabai:orera', (msg) ->
 	yabai = msg.data.yabai
 	$('#display').text(yabai)
-	$('.yabaiButton').attr('src', 'img/button/YABAI_hit.jpg')
+	$('.yabaiButton').addClass('orera');
 	setTimeout () ->
-		$('.yabaiButton').attr('src', 'img/button/YABAI.jpg')
-	, 100
-
+	  $('.yabaiButton').removeClass('orera');
+	, 50
 
 socket.on 'currentSoku', (msg) ->
 	currentSoku = msg.data.currentSoku
@@ -78,7 +73,11 @@ socket.on 'background', (msg) ->
 	
 
 @yabai = () ->
+	$('.yabaiButton').addClass('ore')
 	socket.emit 'yabai'
+	setTimeout () ->
+    $('.yabaiButton').removeClass('ore')
+	, 100
 
 @oquno = ()->
 	socket.emit 'oquno'
@@ -107,3 +106,4 @@ socket.on 'background', (msg) ->
 	data =
 		background: $('#background').val()
 	socket.emit 'background', data
+

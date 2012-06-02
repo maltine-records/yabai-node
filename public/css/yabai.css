@@ -13,3 +13,19 @@ img.yabaiButton {
     background-size: contain;
 }
 
+.yabaiButton {
+  width: 485px;
+  height: 509px;
+  background-image: url('../img/button/YABAI.jpg');
+  -webkit-background-size: 485px 509px;
+}
+
+.yabaiButton.orera {
+  background-image: url('../img/button/YABAI_hit.jpg');
+}
+
+.yabaiButton.ore {
+  background-image: url('../img/button/YABAI_on.jpg') !important;
+}
+
+
