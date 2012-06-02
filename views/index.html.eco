@@ -11,7 +11,7 @@
 		<div data-role="collapsible-set">
 			<div data-role="collapsible" data-collapsed="false">
 				<h3>YABAI Button</h3>
-        <img src="data:image/gif;base64,R0lGODlhAQABAIAAAP///////yH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" class="yabaiButton" onClick="yabai();" />
+        <img src="data:image/gif;base64,R0lGODlhAQABAIAAAP///////yH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" class="yabaiButton" onTouchStart="yabai();" />
 			</div>
 			<div data-role="collapsible" id="twitter_collaspible">
 				<h3>twitter #kabutine</h3>
