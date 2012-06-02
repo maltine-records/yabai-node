@@ -140,7 +140,7 @@ if cluster.isMaster
 				catch e
 #					console.log e
 					client.set "Yabai:Soku", soku
-					throw e
+					#throw e
 	, 1000
 
 
@@ -173,3 +173,4 @@ incrYabai = (addr) ->
 	date = new Date()
 	client.incr "Yabai:yabai:count:at:#{Math.floor((date)/1000)}"
 	client.incr "Yabai:yabai:from:#{addr}:at:#{Math.floor((date)/1000)}"
+	console.log "Yabai:yabai:from:#{addr}:at:#{Math.floor((date)/1000)}"
