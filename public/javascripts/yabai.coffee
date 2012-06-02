@@ -1,3 +1,4 @@
+# vim: noet sts=4:ts=4:sw=4
 socket = io.connect('http://maltinerecords2.cs8.biz')
 
 socket.on 'connect', () ->
@@ -10,11 +11,13 @@ socket.on 'yabai:ore', (msg) ->
 	yabai = msg.data.yabai
 	$('#display').text(yabai)
 
+@othersEffectTimer = 0
 socket.on 'yabai:orera', (msg) ->
 	yabai = msg.data.yabai
 	$('#display').text(yabai)
 	$('.yabaiButton').addClass('orera');
-	setTimeout () ->
+	clearTimeout(@othersEffectTimer)
+	@othersEffectTimer = setTimeout () ->
 	  $('.yabaiButton').removeClass('orera');
 	, 50
 
@@ -72,12 +75,25 @@ socket.on 'background', (msg) ->
 	$('.ui-content').css('background-image', 'url(' + msg.background + ')')
 	
 
+@myEffectTimer = 0
 @yabai = () ->
+	@yabaiStart()
+	@yabaiRelease()
+
+@yabaiStart = (event) ->
 	$('.yabaiButton').addClass('ore')
+	clearTimeout(@myEffectTimer)
 	socket.emit 'yabai'
-	setTimeout () ->
+
+	if event
+		event.preventDefault()
+
+
+@yabaiRelease = (event) ->
+	@myEffectTimer = setTimeout () ->
     $('.yabaiButton').removeClass('ore')
-	, 100
+	, 50
+
 
 @oquno = ()->
 	socket.emit 'oquno'
@@ -106,4 +122,7 @@ socket.on 'background', (msg) ->
 	data =
 		background: $('#background').val()
 	socket.emit 'background', data
+
+$('.yabaiButton').live('touchstart', @yabaiStart)
+$('.yabaiButton').live('touchend', @yabaiRelease)
 
