@@ -127,3 +127,31 @@ $('.yabaiButton').live('touchend', @yabaiRelease)
 $('.yabaiButton').live('mousedown', @yabaiStart)
 $('.yabaiButton').live('mouseup', @yabaiRelease)
 
+$ ->
+  Soku = ($el) ->
+    @$el = $el
+    @val = 0
+
+  Soku::update = (val) ->
+    return  if @val is val
+    isKasoku = @val < val
+    console.log val
+    @val = val
+    @render()
+
+  Soku::render = ->
+    $("span", @$el).remove()
+    if @val > 5.000
+      @$el.addClass "yabai-now"
+    else
+      @$el.removeClass "yabai-now"
+    strVal = String(@val).substr(0, 10)
+    Array::forEach.call strVal, ((c, idx) ->
+      $c = $("<span class=\"soku-char\">").text(c)
+      setTimeout (->
+        $c.addClass "move"
+      ), idx * 20
+      @$el.append $c
+    ), this
+
+  window.soku = new Soku($("#currentSoku"))

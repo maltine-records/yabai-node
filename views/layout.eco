@@ -10,7 +10,6 @@
 		<script src="/javascripts/jquery.mobile-1.1.0.min.js"></script>
 		<script src="/socket.io/socket.io.js"></script>
 		<script src="/javascripts/yabai.js"></script>
-		<script src="/javascripts/soku.js"></script>
 	</head>
 	<body>
 		<%- @body %>
