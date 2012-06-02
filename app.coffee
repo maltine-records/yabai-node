@@ -69,6 +69,7 @@ io.sockets.on 'connection', (socket) ->
 			socket.broadcast.emit 'yabai:orera', data: data
 		updateSoku(socket)
 		incrYabai()
+		console.log socket.handshake.address
 		client.incr 'Yabai:odo'
 		client.incr 'Yabai:trip:a'
 
