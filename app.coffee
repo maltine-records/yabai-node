@@ -111,6 +111,7 @@ io.sockets.on 'connection', (socket) ->
 				socket.broadcast.emit 'currentSoku', data: data
 			catch e
 				console.error e
+				throw e
 	,1000
 
 
@@ -139,6 +140,7 @@ if cluster.isMaster
 				catch e
 #					console.log e
 					client.set "Yabai:Soku", soku
+					throw e
 	, 1000
 
 
