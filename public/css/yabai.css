@@ -14,10 +14,12 @@ img.yabaiButton {
 }
 
 .yabaiButton {
-  width: 485px;
-  height: 509px;
+  width: 300px;
+  height: 315px;
+  background-position: 0 0;
   background-image: url('../img/button/YABAI.jpg');
-  -webkit-background-size: 485px 509px;
+  -webkit-background-size: 300px 315px;
+  background-size: 300px 315px;
 }
 
 .yabaiButton.orera {
@@ -26,6 +28,10 @@ img.yabaiButton {
 
 .yabaiButton.ore {
   background-image: url('../img/button/YABAI_on.jpg') !important;
+}
+
+div.ui-collapsible-content {
+  padding: 10px 0 !important;
 }
 
 
