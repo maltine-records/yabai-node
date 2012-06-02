@@ -120,6 +120,9 @@ socket.on 'background', (msg) ->
 		background: $('#background').val()
 	socket.emit 'background', data
 
+
 $('.yabaiButton').live('touchstart', @yabaiStart)
 $('.yabaiButton').live('touchend', @yabaiRelease)
+$('.yabaiButton').live('mousedown', @yabaiStart)
+$('.yabaiButton').live('mouseup', @yabaiRelease)
 
