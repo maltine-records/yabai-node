@@ -85,9 +85,6 @@ socket.on 'background', (msg) ->
 	clearTimeout(@myEffectTimer)
 	socket.emit 'yabai'
 
-	if event
-		event.preventDefault()
-
 
 @yabaiRelease = (event) ->
 	@myEffectTimer = setTimeout () ->
