@@ -68,8 +68,8 @@ io.sockets.on 'connection', (socket) ->
 			socket.emit 'yabai:ore', data: data
 			socket.broadcast.emit 'yabai:orera', data: data
 		updateSoku(socket)
-		incrYabai()
-		console.log socket.handshake.address
+		addr = socket.handshake.address.address
+		incrYabai(addr)
 		client.incr 'Yabai:odo'
 		client.incr 'Yabai:trip:a'
 
@@ -167,6 +167,7 @@ updateSoku = (socket) ->
 	client.expire keynameSec,  60 * 3
 
 
-incrYabai = () ->
+incrYabai = (addr) ->
 	date = new Date()
-	client.incr "Yabai:yabai:#{Math.floor((date)/1000)}"
+	client.incr "Yabai:yabai:count:at:#{Math.floor((date)/1000)}"
+	client.incr "Yabai:yabai:from:#{addr}:at:#{Math.floor((date)/1000)}"
