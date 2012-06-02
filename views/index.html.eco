@@ -7,7 +7,7 @@
 
 	<div data-role="content">
 		<h3 id="announce"></h3>
-		<h3>Soku:<span id="currentSoku"><%= @data.currentSoku %></span>
+		<h3>Soku:<span id="currentSoku"><%= @data.currentSoku %></span><h3>
 		<div data-role="collapsible-set">
 			<div data-role="collapsible" data-collapsed="false">
 				<h3>YABAI Button</h3>
