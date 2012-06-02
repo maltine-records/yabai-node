@@ -13,6 +13,72 @@ img.yabaiButton {
     background-size: contain;
 }
 
+div.soku {
+  text-align: center;
+  font-weight: bold;
+  margin-bottom: 3px;
+}
+
+div.soku {
+  height: 20px;
+  padding-top: 5px;
+  padding-bottom: 15px;
+}
+
+div.soku span.soku-char {
+  font-size: 130%;
+  height: 20px;
+  display: inline-block;
+  position: relative;
+}
+
+div.soku span.soku-char.move {
+  font-size : 170%;
+  -webkit-animation-timing-function: linear;
+  -webkit-animation-iteration-count: 1;
+  -webkit-animation-name: soku-bound;
+  -webkit-animation-duration: 0.5s;
+}
+
+.yabai-now {
+  color: #A00;
+}
+
+@-webkit-keyframes soku-bound {
+  0% { font-size : 100% }
+  25% {
+    bottom: 45px;
+  }
+  30% { 
+    font-size : 170%;
+    bottom: 50px;
+  }
+  35% { 
+    font-size : 250%;
+    bottom: 45px;
+  }
+  55% {
+    font-size : 170%;
+    bottom: -15px;
+  }
+  60% {
+    font-size : 170%;
+    bottom: -20px;
+  }
+  65% {
+    font-size : 170%;
+    bottom: -15px;
+  }
+  90% { 
+    font-size : 170%;
+    bottom: 10px;
+  }
+  100% { 
+    font-size : 170%;
+    bottom: 0px;
+  }
+}
+
 .yabaiButton {
   width: 300px;
   height: 315px;
