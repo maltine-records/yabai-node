@@ -101,7 +101,12 @@ io.sockets.on 'connection', (socket) ->
 	socket.on 'background', (data) ->
 		socket.broadcast.emit 'background', data
 
-	setInterval ->
+	socket.on 'disconnect', ->
+		clearInterval timerId
+		;
+
+	timerId = setInterval ->
+#		console.warn("-");
 		client.get "Yabai:Soku", (err, reply) ->
 			try
 				soku = reply.toString()
