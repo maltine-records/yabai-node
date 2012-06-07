@@ -60,18 +60,26 @@ io.set "log level", 2
 
 io.sockets.on 'connection', (socket) ->
 	console.log 'connection'
+	clientSoku = 0;
 
 	socket.on 'yabai', (data) ->
+		addr = socket.handshake.address.address
+		if(clientSoku++ > 30)
+			socket.disconnect()
+			console.log addr + " was forced to disconnect; suspicious rate too fast of Tashiro.";
+			return
+
 		client.incr 'Yabai:yabai', (err, reply) ->
 			data =
 				yabai: reply
-			socket.emit 'yabai:ore', data: data
-			socket.broadcast.emit 'yabai:orera', data: data
+			socket.volatile.emit 'yabai:ore', data: data
+			socket.volatile.broadcast.emit 'yabai:orera', data: data
 		updateSoku(socket)
-		addr = socket.handshake.address.address
 		incrYabai(addr)
 		client.incr 'Yabai:odo'
 		client.incr 'Yabai:trip:a'
+
+
 
 	socket.on 'oquno', (data) ->
 		socket.broadcast.emit 'oquno'
@@ -107,13 +115,13 @@ io.sockets.on 'connection', (socket) ->
 
 	timerId = setInterval ->
 #		console.warn("-");
+		clientSoku = 0;
 		client.get "Yabai:Soku", (err, reply) ->
 			try
 				soku = reply.toString()
 				data =
 					currentSoku: soku
-				socket.emit 'currentSoku', data: data
-				socket.broadcast.emit 'currentSoku', data: data
+				socket.volatile.emit 'currentSoku', data: data
 			catch e
 				console.error e
 				throw e
