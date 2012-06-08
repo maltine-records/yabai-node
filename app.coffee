@@ -3,7 +3,6 @@
 # vim: noet sts=4:ts=4:sw=4
 #
 
-cluster = require 'cluster'
 os = require 'os'
 express = require 'express'
 coffee = require 'coffee-script'
@@ -48,19 +47,14 @@ app.get '/yabasa', (req, res) ->
 		catch e
 			res.send("{}")
 
-
-if cluster.isMaster
-	for i in [1...os.cpus().length]
-		worker = cluster.fork()
-else
-	app.listen process.env.PORT || 3000
+app.listen process.env.PORT || 3000
 
 io = require('socket.io').listen app
 io.set "log level", 2
 
 io.sockets.on 'connection', (socket) ->
 	console.log 'connection'
-	clientSoku = 0;
+	clientSoku = 0
 
 	socket.on 'yabai', (data) ->
 		addr = socket.handshake.address.address
@@ -111,11 +105,10 @@ io.sockets.on 'connection', (socket) ->
 
 	socket.on 'disconnect', ->
 		clearInterval timerId
-		;
 
 	timerId = setInterval ->
 #		console.warn("-");
-		clientSoku = 0;
+		clientSoku = 0
 		client.get "Yabai:Soku", (err, reply) ->
 			try
 				soku = reply.toString()
@@ -128,36 +121,33 @@ io.sockets.on 'connection', (socket) ->
 	,1000
 
 
-if cluster.isMaster
-	setInterval ->
-		client.keys 'Yabai:S:*', (err, replies) ->
-			SPAN    = 60 #seconds
-			now     = new Date()
-			from    = Math.ceil(now.getTime()/1000 - SPAN)
-			targets = []
+setInterval ->
+	client.keys 'Yabai:S:*', (err, replies) ->
+		SPAN    = 60 #seconds
+		now     = new Date()
+		from    = Math.ceil(now.getTime()/1000 - SPAN)
+		targets = []
 
-			skiplen = "Yabai:S:".length
-			for val in replies
-				ii = parseInt val.substring(skiplen), 10
-				if ii > from
-					targets.push "Yabai:S:" + ii
+		skiplen = "Yabai:S:".length
+		for val in replies
+			ii = parseInt val.substring(skiplen), 10
+			if ii > from
+				targets.push "Yabai:S:" + ii
 
-			client.mget targets, (err, replies) ->
-				soku = 1.0
-				try
-					# sigmoid: 1/1+exp(-ax)
-					# max is 1, and min(0) is 0.5. so 8*sigmoid-3 will be [1,5]
-					# if a is smaller, soku will increase slower
-					soku = 8.0 / (1.0 + Math.exp(-replies.length/10)) - 3 if replies.length
-					client.set "Yabai:Soku", soku
-				catch e
+		client.mget targets, (err, replies) ->
+			soku = 1.0
+			try
+				# sigmoid: 1/1+exp(-ax)
+				# max is 1, and min(0) is 0.5. so 8*sigmoid-3 will be [1,5]
+				# if a is smaller, soku will increase slower
+				soku = 8.0 / (1.0 + Math.exp(-replies.length/10)) - 3 if replies.length
+				client.set "Yabai:Soku", soku
+			catch e
 #					console.log e
-					client.set "Yabai:Soku", soku
-					#throw e
-	, 1000
+				client.set "Yabai:Soku", soku
+				#throw e
+, 1000
 
-
-app.listen(process.env.PORT || 3000)
 
 updateSoku = (socket) ->
 	now  = new Date()

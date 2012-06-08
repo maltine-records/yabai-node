@@ -9,6 +9,11 @@ PAGER    = lv
 run: $(OBJS)
 	-$(CC) app.coffee
 
+run3: $(OBJS)
+	- PORT=3000 $(CC) app.coffee &
+	- PORT=3001 $(CC) app.coffee &
+	- PORT=3002 $(CC) app.coffee &
+	- $(CC) balancer.coffee
 
 autorespawn: $(OBJS)
 	while :; do $(CC) app.coffee ; date >> respawn.log; done
@@ -32,6 +37,7 @@ setup:
 	@npm install redis
 	@npm install cluster
 	@npm install jsonreq
+	@npm install http-proxy
 
 
 dbsize:
