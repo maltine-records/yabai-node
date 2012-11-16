@@ -4,14 +4,22 @@
 #
 
 os = require 'os'
-express = require 'express'
 coffee = require 'coffee-script'
 
-app = express.createServer()
+express = require 'express'
+app = express()
+http = require 'http'
+server = http.createServer(app)
+
+eco = require 'eco'
+app.engine ".eco", eco
+
+io = require 'socket.io'
+socket = io.listen(server)
 
 app.use express.static(__dirname + '/public')
 
-eco = require 'eco'
+
 redis = require 'redis'
 client = redis.createClient()
 
@@ -25,7 +33,7 @@ app.get '/', (req, res) ->
 			title: 'YABAI'
 			yabai: reply
 		res.render 'index.html.eco', data: data
-
+		
 app.get '/cebui', (req, res) ->
 	client.get 'yabai', (err, reply) ->
 		data =
@@ -47,12 +55,11 @@ app.get '/yabasa', (req, res) ->
 		catch e
 			res.send("{}")
 
-app.listen process.env.PORT || 3000
+server.listen process.env.PORT || 3000
 
-io = require('socket.io').listen app
-io.set "log level", 2
+socket.set "log level", 2
 
-io.sockets.on 'connection', (socket) ->
+socket.sockets.on 'connection', (socket) ->
 	console.log 'connection'
 	clientSoku = 0
 
