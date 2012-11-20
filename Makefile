@@ -30,14 +30,7 @@ view: $(TARGET)
 
 
 setup:
-	@npm install coffee-script
-	@npm install express
-	@npm install socket.io
-	@npm install eco
-	@npm install redis
-	@npm install cluster
-	@npm install jsonreq
-	@npm install http-proxy
+	npm install
 
 
 dbsize:

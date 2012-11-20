@@ -16,21 +16,7 @@ Base Components
 Node Modules
 ============
 
-install w/ npm
-
-- coffee-script
-
-- express
-
-- socket.io
-
-- eco
-
-- redis
-
-- cluster
-
-- jsonreq
+    make setup
 
 ToDo
 ====
