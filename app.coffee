@@ -11,7 +11,13 @@ app = express()
 http = require 'http'
 server = http.createServer(app)
 
-app.engine "eco", require('consolidate').eco
+ect = require 'ect'
+ectOpts =
+	cache: true
+	watch: true
+	root: __dirname + '/views'
+ectRenderer = ect(ectOpts)
+app.engine ".ect", ectRenderer.render
 
 io = require 'socket.io'
 socket = io.listen(server)
@@ -31,14 +37,14 @@ app.get '/', (req, res) ->
 		data =
 			title: 'YABAI'
 			yabai: reply
-		res.render 'index.html.eco', data: data
+		res.render 'index.html.ect', data: data
 		
 app.get '/cebui', (req, res) ->
 	client.get 'yabai', (err, reply) ->
 		data =
 			title: 'CEBUI'
 			yabai: reply
-		res.render 'admin.html.eco', data: data
+		res.render 'admin.html.ect', data: data
 
 
 # API
