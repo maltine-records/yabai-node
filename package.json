@@ -1,0 +1,29 @@
+{
+  "name": "yabai-node",
+  "version": "0.0.0",
+  "description": "============================ YABAI Button in CoffeeScript ============================",
+  "main": "index.js",
+  "dependencies": {
+    "eco": "~1.1.0-rc-3",
+    "express": "~3.0.3",
+    "http-proxy": "~0.8.5",
+    "jsonreq": "~0.1.0",
+    "redis": "~0.8.2",
+    "socket.io": "~0.9.11",
+    "ws": "~0.4.23",
+    "websocket-client-node-0.6": "~1.0.0"
+  },
+  "devDependencies": {
+    "coffee-script": "~1.4.0"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/maltine-records/yabai-node.git"
+  },
+  "author": "",
+  "license": "BSD",
+  "readmeFilename": "README.rst"
+}
