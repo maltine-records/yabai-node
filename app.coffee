@@ -11,8 +11,7 @@ app = express()
 http = require 'http'
 server = http.createServer(app)
 
-eco = require 'eco'
-app.engine ".eco", eco
+app.engine "eco", require('consolidate').eco
 
 io = require 'socket.io'
 socket = io.listen(server)
