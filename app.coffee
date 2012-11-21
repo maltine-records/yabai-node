@@ -60,7 +60,21 @@ app.get '/yabasa', (req, res) ->
 		catch e
 			res.send("{}")
 
-server.listen process.env.PORT || 3000
+Port = process.env.PORT || 3000
+server.listen Port
+
+cluster = require 'cluster'
+
+if cluster.isMaster
+	for cpu in [1...os.cpus().length]
+		cluster.fork()
+		
+	cluster.on 'death', (worker) ->
+		console.log "worker: #{worker.pid} died."
+else
+	http.createServer(app).listen Port
+	
+
 
 socket.set "log level", 2
 
