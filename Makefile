@@ -1,5 +1,5 @@
 CC       = node_modules/coffee-script/bin/coffee
-OBJS     = public/javascripts/yabai.js
+OBJS     = app.js public/javascripts/yabai.js
 REDISCLI = redis-cli
 TARGET   = app.js
 PAGER    = lv
@@ -7,7 +7,7 @@ PAGER    = lv
 
 
 run: $(OBJS)
-	-$(CC) app.coffee
+	- node app.js
 
 run3: $(OBJS)
 	- PORT=3000 $(CC) app.coffee &
